@@ -1,0 +1,80 @@
+body {
+  background-color: #e0f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.card-validator {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 40px; 
+  text-align: center;
+  width: 400px; 
+  height: 400px; 
+}
+
+.card-validator h2 {
+  font-size: 18px;
+  margin-bottom: 60px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.result.valid {
+  color: green;
+}
+
+.result.invalid {
+  color: red;
+}
+
+.error-message {
+  color: purple;
+}
