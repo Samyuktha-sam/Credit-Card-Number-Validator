@@ -23,20 +23,7 @@ namespace CreditcardValidatorAPI.Controllers
             if (string.IsNullOrEmpty(creditCardNumber))
                 return BadRequest("Credit card number is required.");
 
-            var (isValid, cardType) = _validationService.ValidateCreditCard(creditCardNumber);
-
-            var message = isValid ? "The credit card number is valid." : "The credit card number is invalid.";
-
-            var validationRequest = new ValidationRequest
-            {
-                CreditCardNumber = creditCardNumber,
-                IsValid = isValid,
-                CardType = cardType,
-                Timestamp = DateTime.Now,
-                ResultMsg = message
-            };
-
-            _validationService.AddValidationRequest(validationRequest);
+            var (isValid, cardType, message) = _validationService.ValidateCreditCard(creditCardNumber);
 
             return Ok(new
             {

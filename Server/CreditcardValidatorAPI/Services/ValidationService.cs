@@ -12,16 +12,51 @@ public class ValidationService : IValidationService
         _repository = repository;
     }
 
-    public (bool isValid, string cardType) ValidateCreditCard(string creditCardNumber)
+    public (bool isValid, string cardType, string resultMsg) ValidateCreditCard(string creditCardNumber)
     {
-        var cardType = _repository.GetCardType(creditCardNumber);
-        var isValid = ValidateLuhnAlgorithm(creditCardNumber);
-        
-        return (isValid, cardType);
+        try
+        {
+            var cardType = _repository.GetCardType(creditCardNumber);
+
+            if (cardType == "Unknown")
+            {
+                throw new ArgumentException("Card type is unknown. Validation stopped.");
+            }
+
+            var isValid = ValidateLuhnAlgorithm(creditCardNumber);
+            if(!isValid){
+                cardType = "Not Applicable";
+            }
+            var resultMsg = isValid
+                ? $"Credit card is valid. Card Type: {cardType}"
+                : $"Credit card number is invalid.";
+
+            LogValidationRequest(creditCardNumber, isValid, cardType, resultMsg);
+
+            return (isValid, cardType, resultMsg);
+        }
+        catch (Exception ex)
+        {
+            var cardType = "Unknown";
+            var resultMsg = ex is ArgumentException ? ex.Message : $"An error occurred during validation: {ex.Message}";
+
+            LogValidationRequest(creditCardNumber, false, cardType, resultMsg);
+
+            return (false, cardType, resultMsg);
+        }
     }
 
-    public void AddValidationRequest(ValidationRequest validationRequest)
+    private void LogValidationRequest(string creditCardNumber, bool isValid, string cardType, string resultMsg)
     {
+        var validationRequest = new ValidationRequest
+        {
+            CreditCardNumber = creditCardNumber,
+            IsValid = isValid,
+            CardType = cardType,
+            Timestamp = DateTime.Now,
+            ResultMsg = resultMsg
+        };
+
         _repository.AddValidationRequest(validationRequest);
     }
 
