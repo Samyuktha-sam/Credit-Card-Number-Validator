@@ -1,4 +1,3 @@
-using CreditcardValidatorAPI.Models;
 
 namespace CreditcardValidatorAPI.Repositories;
 public interface IValidationRepository

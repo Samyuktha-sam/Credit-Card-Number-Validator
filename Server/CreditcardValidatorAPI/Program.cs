@@ -6,7 +6,6 @@ using CreditcardValidatorAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDbContext<CCVDbContext>();
 builder.Services.AddScoped<IValidationRepository, ValidationRepository>();
@@ -22,7 +21,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Add Swagger/OpenAPI support
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "CreditCardValidatorAPI", Version = "v1" });
@@ -30,7 +28,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

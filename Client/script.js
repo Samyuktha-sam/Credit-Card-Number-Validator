@@ -1,5 +1,5 @@
 document.getElementById('card-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the form from submitting the traditional way
+  event.preventDefault(); 
 
   const cardNumber = document.getElementById('card-number').value;
   const resultDiv = document.getElementById('result');
@@ -21,7 +21,7 @@ document.getElementById('card-form').addEventListener('submit', function(event) 
   })
   .then(data => {
       if (data.isValid) {
-          resultDiv.innerHTML = `✔ Valid Card Number<br><span class="error-message">${data.message}</span>`;
+        resultDiv.innerHTML = `✔ Valid Card Number<br><span class="error-message">${data.message}</span>`;
           resultDiv.className = "result valid";
       } else {
           resultDiv.innerHTML = `✘ Invalid Card Number<br><span class="error-message">${data.message}</span>`;

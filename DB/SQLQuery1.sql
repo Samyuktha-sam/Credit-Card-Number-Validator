@@ -9,10 +9,6 @@ SELECT [CardTypeID]
 
 GO
 
-
-USE [CreditCardValidation]
-GO
-
 SELECT [RequestID]
       ,[CreditCardNumber]
       ,[IsValid]

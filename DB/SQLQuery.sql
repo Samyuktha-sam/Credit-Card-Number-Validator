@@ -1,15 +1,15 @@
--- Create the database if it does not exist
+
 IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'CreditCardValidation')
 BEGIN
     CREATE DATABASE CreditCardValidation;
 END
 GO
 
--- Use the newly created database
+
 USE CreditCardValidation;
 GO
 
--- Create the CardTypes table if it does not exist
+
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CardTypes')
 BEGIN
     CREATE TABLE CardTypes (
@@ -21,7 +21,7 @@ BEGIN
 END
 GO
 
--- Create the ValidationRequests table if it does not exist
+
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ValidationRequests')
 BEGIN
     CREATE TABLE ValidationRequests (
@@ -35,7 +35,7 @@ BEGIN
 END
 GO
 
--- Insert master data into CardTypes table if it does not exist
+
 IF NOT EXISTS (SELECT * FROM CardTypes)
 BEGIN
     INSERT INTO CardTypes (CardTypeName, Prefix, Length) VALUES
